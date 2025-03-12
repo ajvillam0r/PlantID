@@ -56,9 +56,9 @@ const PlantResults = ({
 
   return (
     <div className="w-full max-w-md mx-auto bg-background">
-      <Card className="overflow-hidden">
+      <Card className="overflow-hidden border-0 shadow-none">
         <Motion type="scale" duration={600}>
-          <div className="relative h-64 w-full">
+          <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
             <img
               src={imageUrl}
               alt={plantName}
@@ -75,87 +75,87 @@ const PlantResults = ({
           </div>
         </Motion>
 
-        <CardHeader>
+        <CardHeader className="px-4 py-3">
           <Motion type="slide-down" delay={200} duration={500}>
             <div className="flex justify-between items-start">
               <div>
-                <CardTitle className="text-2xl">{plantName}</CardTitle>
-                <CardDescription className="italic">
+                <CardTitle className="text-xl">{plantName}</CardTitle>
+                <CardDescription className="italic text-sm">
                   {scientificName}
                 </CardDescription>
               </div>
-              <Leaf className="h-6 w-6 text-green-600 animate-float" />
+              <Leaf className="h-5 w-5 text-green-600 animate-float" />
             </div>
           </Motion>
         </CardHeader>
 
-        <CardContent>
-          <div className="space-y-4">
-            <Motion type="fade" delay={400} duration={500}>
-              <div className="grid grid-cols-2 gap-3">
-                {details.map((detail, index) => (
-                  <div key={index} className="space-y-1">
-                    <p className="text-xs text-muted-foreground">
-                      {detail.label}
-                    </p>
-                    <p className="text-sm font-medium">{detail.value}</p>
-                  </div>
+        <CardContent className="px-4 py-2 space-y-4">
+          <Motion type="fade" delay={400} duration={500}>
+            <div className="grid grid-cols-2 gap-3">
+              {details.map((detail, index) => (
+                <div key={index} className="space-y-1">
+                  <p className="text-xs text-muted-foreground">
+                    {detail.label}
+                  </p>
+                  <p className="text-sm font-medium">{detail.value}</p>
+                </div>
+              ))}
+            </div>
+          </Motion>
+
+          <Motion type="fade" delay={600} duration={500}>
+            <div className="flex flex-wrap gap-1.5 mt-3">
+              <Tag className="h-3.5 w-3.5 text-muted-foreground" />
+              <MotionGroup staggerDelay={100} type="scale" duration={300}>
+                {tags.map((tag, index) => (
+                  <Badge
+                    key={index}
+                    variant="outline"
+                    className="text-xs py-0 h-5"
+                  >
+                    {tag}
+                  </Badge>
                 ))}
-              </div>
-            </Motion>
+                {tags.includes("Rare") && (
+                  <Badge
+                    variant="outline"
+                    className="text-xs py-0 h-5 bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 cursor-pointer animate-pulse-slow"
+                    onClick={onAddToRareAlerts}
+                  >
+                    <Bell className="h-3 w-3 mr-1" />
+                    Add Alert
+                  </Badge>
+                )}
+              </MotionGroup>
+            </div>
+          </Motion>
 
-            <Motion type="fade" delay={600} duration={500}>
-              <div className="flex flex-wrap gap-2 mt-4">
-                <Tag className="h-4 w-4 text-muted-foreground" />
-                <MotionGroup staggerDelay={100} type="scale" duration={300}>
-                  {tags.map((tag, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
-                  {tags.includes("Rare") && (
-                    <Badge
-                      variant="outline"
-                      className="text-xs bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 cursor-pointer animate-pulse-slow"
-                      onClick={onAddToRareAlerts}
-                    >
-                      <Bell className="h-3 w-3 mr-1" />
-                      Add Alert
-                    </Badge>
-                  )}
-                </MotionGroup>
-              </div>
-            </Motion>
-
-            <Motion type="slide-up" delay={800} duration={500}>
-              <div className="mt-6">
-                <h3 className="text-lg font-semibold mb-2">
-                  Care Instructions
-                </h3>
-                <CareInstructionsTable
-                  plantName={plantName}
-                  instructions={careInstructions?.map((instruction) => ({
-                    category: instruction.category,
-                    value: instruction.value,
-                    description: instruction.description,
-                    icon: instruction.category
-                      .toLowerCase()
-                      .includes("water") ? (
-                      <Droplet className="h-5 w-5 text-blue-500" />
-                    ) : instruction.category.toLowerCase().includes("sun") ||
-                      instruction.category.toLowerCase().includes("light") ? (
-                      <Sun className="h-5 w-5 text-yellow-500" />
-                    ) : (
-                      <Leaf className="h-5 w-5 text-green-600" />
-                    ),
-                  }))}
-                />
-              </div>
-            </Motion>
-          </div>
+          <Motion type="slide-up" delay={800} duration={500}>
+            <div className="mt-4">
+              <h3 className="text-base font-semibold mb-2">
+                Care Instructions
+              </h3>
+              <CareInstructionsTable
+                plantName={plantName}
+                instructions={careInstructions?.map((instruction) => ({
+                  category: instruction.category,
+                  value: instruction.value,
+                  description: instruction.description,
+                  icon: instruction.category.toLowerCase().includes("water") ? (
+                    <Droplet className="h-4 w-4 text-blue-500" />
+                  ) : instruction.category.toLowerCase().includes("sun") ||
+                    instruction.category.toLowerCase().includes("light") ? (
+                    <Sun className="h-4 w-4 text-yellow-500" />
+                  ) : (
+                    <Leaf className="h-4 w-4 text-green-600" />
+                  ),
+                }))}
+              />
+            </div>
+          </Motion>
         </CardContent>
 
-        <CardFooter className="flex-col space-y-4 pb-6">
+        <CardFooter className="flex-col space-y-4 px-4 py-3">
           <Motion type="slide-up" delay={1000} duration={500}>
             <ActionButtons onIdentifyAnother={onIdentifyAnother} />
           </Motion>

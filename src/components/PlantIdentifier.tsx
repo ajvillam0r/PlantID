@@ -159,7 +159,7 @@ const PlantIdentifier = ({
   return (
     <div
       className={cn(
-        "w-full max-w-md mx-auto bg-white dark:bg-gray-800",
+        "w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden",
         className,
       )}
     >
@@ -168,7 +168,7 @@ const PlantIdentifier = ({
           <div className="relative">
             <RarePlantAlerts />
             <Button
-              className="absolute top-2 right-2"
+              className="absolute top-2 right-2 z-10"
               variant="ghost"
               size="sm"
               onClick={handleCloseRareAlerts}
@@ -185,7 +185,7 @@ const PlantIdentifier = ({
               imageUrl={identifiedPlant?.imageUrl}
             />
             <Button
-              className="absolute top-2 right-2"
+              className="absolute top-2 right-2 z-10"
               variant="ghost"
               size="sm"
               onClick={handleCloseHealthDiagnosis}
@@ -199,7 +199,7 @@ const PlantIdentifier = ({
           <div className="relative">
             <PlantVoiceAssistant plantName={identifiedPlant?.plantName} />
             <Button
-              className="absolute top-2 right-2"
+              className="absolute top-2 right-2 z-10"
               variant="ghost"
               size="sm"
               onClick={handleCloseVoiceAssistant}
@@ -215,7 +215,7 @@ const PlantIdentifier = ({
               currentPlant={identifiedPlant?.plantName}
             />
             <Button
-              className="absolute top-2 right-2"
+              className="absolute top-2 right-2 z-10"
               variant="ghost"
               size="sm"
               onClick={handleCloseCompatibilityChecker}
@@ -229,7 +229,7 @@ const PlantIdentifier = ({
           <div className="relative">
             <SeasonalCareAdjustments plantName={identifiedPlant?.plantName} />
             <Button
-              className="absolute top-2 right-2"
+              className="absolute top-2 right-2 z-10"
               variant="ghost"
               size="sm"
               onClick={handleCloseSeasonalCare}
@@ -281,7 +281,7 @@ const PlantIdentifier = ({
               </Motion>
 
               <MotionGroup
-                className="mt-4 flex justify-center gap-2 flex-wrap"
+                className="mt-4 flex justify-center gap-2 flex-wrap px-4 pb-4"
                 staggerDelay={150}
                 initialDelay={300}
                 type="scale"
@@ -289,24 +289,26 @@ const PlantIdentifier = ({
               >
                 <Button
                   variant="outline"
-                  className="flex items-center gap-2"
+                  size="sm"
+                  className="flex items-center gap-1"
                   onClick={handleShowHealthDiagnosis}
                 >
-                  <AlertCircle className="h-4 w-4 text-yellow-500" />
+                  <AlertCircle className="h-3.5 w-3.5 text-yellow-500" />
                   Check Health
                 </Button>
                 <Button
                   variant="outline"
-                  className="flex items-center gap-2"
+                  size="sm"
+                  className="flex items-center gap-1"
                   onClick={handleShowVoiceAssistant}
                 >
-                  <MessageSquare className="h-4 w-4 text-green-500" />
+                  <MessageSquare className="h-3.5 w-3.5 text-green-500" />
                   Voice Assistant
                 </Button>
               </MotionGroup>
 
               <MotionGroup
-                className="mt-2 flex justify-center gap-2 flex-wrap"
+                className="mt-2 flex justify-center gap-2 flex-wrap px-4 pb-4"
                 staggerDelay={150}
                 initialDelay={600}
                 type="scale"
@@ -314,18 +316,20 @@ const PlantIdentifier = ({
               >
                 <Button
                   variant="outline"
-                  className="flex items-center gap-2"
+                  size="sm"
+                  className="flex items-center gap-1"
                   onClick={handleShowCompatibilityChecker}
                 >
-                  <Flower className="h-4 w-4 text-blue-500" />
+                  <Flower className="h-3.5 w-3.5 text-blue-500" />
                   Compatibility
                 </Button>
                 <Button
                   variant="outline"
-                  className="flex items-center gap-2"
+                  size="sm"
+                  className="flex items-center gap-1"
                   onClick={handleShowSeasonalCare}
                 >
-                  <Calendar className="h-4 w-4 text-purple-500" />
+                  <Calendar className="h-3.5 w-3.5 text-purple-500" />
                   Seasonal Care
                 </Button>
               </MotionGroup>

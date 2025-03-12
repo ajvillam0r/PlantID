@@ -2,12 +2,6 @@
 
 import React from "react";
 import { Button } from "./ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
 import { BookmarkPlus, Share2, RefreshCw, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,83 +23,53 @@ const ActionButtons = ({
   return (
     <div
       className={cn(
-        "flex flex-wrap gap-2 justify-between w-full bg-background p-2",
+        "flex flex-wrap gap-2 justify-between w-full bg-background",
         className,
       )}
     >
-      <TooltipProvider>
-        <div className="flex gap-2">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={onSave}
-                className="flex items-center gap-1"
-              >
-                <BookmarkPlus className="h-4 w-4" />
-                <span className="hidden sm:inline">Save</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Save to your collection</p>
-            </TooltipContent>
-          </Tooltip>
+      <div className="flex gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onSave}
+          className="flex items-center gap-1 h-8"
+        >
+          <BookmarkPlus className="h-3.5 w-3.5" />
+          <span>Save</span>
+        </Button>
 
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={onShare}
-                className="flex items-center gap-1"
-              >
-                <Share2 className="h-4 w-4" />
-                <span className="hidden sm:inline">Share</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Share this plant</p>
-            </TooltipContent>
-          </Tooltip>
-        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onShare}
+          className="flex items-center gap-1 h-8"
+        >
+          <Share2 className="h-3.5 w-3.5" />
+          <span>Share</span>
+        </Button>
+      </div>
 
-        <div className="flex gap-2">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={onIdentifyAnother}
-                className="flex items-center gap-1"
-              >
-                <RefreshCw className="h-4 w-4" />
-                <span className="hidden sm:inline">New Scan</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Identify another plant</p>
-            </TooltipContent>
-          </Tooltip>
+      <div className="flex gap-2">
+        <Button
+          variant="secondary"
+          size="sm"
+          onClick={onIdentifyAnother}
+          className="flex items-center gap-1 h-8"
+        >
+          <RefreshCw className="h-3.5 w-3.5" />
+          <span>New Scan</span>
+        </Button>
 
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="default"
-                size="sm"
-                onClick={onViewMoreDetails}
-                className="flex items-center gap-1"
-              >
-                <Info className="h-4 w-4" />
-                <span className="hidden sm:inline">Details</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>View more plant details</p>
-            </TooltipContent>
-          </Tooltip>
-        </div>
-      </TooltipProvider>
+        <Button
+          variant="default"
+          size="sm"
+          onClick={onViewMoreDetails}
+          className="flex items-center gap-1 h-8"
+        >
+          <Info className="h-3.5 w-3.5" />
+          <span>Details</span>
+        </Button>
+      </div>
     </div>
   );
 };
